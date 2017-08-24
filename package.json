@@ -1,20 +1,24 @@
 {
   "name": "nsp-nodesecurity-calificaciones-101",
   "version": "0.1.0",
-  "description": "Calcular promedio de calificaciones. Usar localtunnel para publicar y hacer pruebas. Se utiliza nsp para la seguridad.",
+  "description": "Calcular promedio de calificaciones. Usa express, localtunnel, nsp, eslint, npm-rull-all.",
   "main": "index.js",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "prestart": "npm-run-all --parallel security-check test",
+    "prestart": "npm-run-all --parallel security-check test eslint",
     "start": "npm-run-all --parallel localtunnel src",
     "localtunnel": "lt --port 3000",
     "security-check": "nsp check",
     "test": "nodeunit",
+    "eslint": "eslint --fix .",
     "src": "node index.js"
   },
+  "pre-commit": [
+    "test", "eslint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wiltrovira/nsp-nodesecurity-calificaciones-201.git"
@@ -29,7 +33,8 @@
     "funciones",
     "localtunnel",
     "nsp",
-    "node security"
+    "node security",
+    "eslint"
   ],
   "author": "Wilt Rovira",
   "license": "ISC",
@@ -41,6 +46,7 @@
     "express": "^4.15.4"
   },
   "devDependencies": {
+    "eslint": "^4.5.0",
     "localtunnel": "^1.8.3",
     "nodeunit": "^0.11.1",
     "npm-run-all": "^4.0.2",
